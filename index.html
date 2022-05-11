@@ -38,10 +38,25 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <div class="d-flex my-auto mx-auto align-items-center">
             <i
-              class="bi bi-image  me-2"
+              class="bi bi-image me-2"
               style="font-size: 2rem; color: cornflowerblue"
             ></i>
-            <input class="form-control" type="file" id="inputFile" onchange="loadImage(this.files[0])" />
+            <input
+              class="form-control"
+              type="file"
+              id="inputFile"
+              onchange="loadImage(this.files[0])"
+              onclick="loadImage(this.files[0])"
+            />
+            <button
+              class="border-0 bg-transparent ms-5 w-50 d-flex flex-wrap align-items-center justify-content-center"
+            >
+              <i
+                class="bi bi-save-fill me-3"
+                style="font-size: 2rem; color: cornflowerblue"
+              ></i
+              >Salvar imagem
+            </button>
           </div>
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item d-flex">
@@ -65,13 +80,85 @@
     </nav>
     <div
       class="relative d-flex align-items-center p-2 shadow-sm p-3 mb-5 bg-body rounded-3 h-100"
-      style="min-height: 80vh; max-height: 80vh; overflow-y:auto; scrollbar-width: thin;"
+      style="
+        min-height: 80vh;
+        max-height: 80vh;
+        overflow-y: auto;
+        scrollbar-width: thin;
+      "
     >
       <div class="container">
         <div class="row g-0">
-          <div class="col-12 col-lg-5 d-flex flex-wrap align-items-center justify-content-center"><h3>Original</h3> <br><canvas id="og-canvas" class="shadow-sm rounded-3" width="450" height="450"></canvas></div>
-          <div class="col-12 col-lg-2 d-flex align-items-center justify-content-center "></div>
-          <div class="col-12 col-lg-5 d-flex flex-wrap  align-items-center justify-content-center "><h3>Auxiliar</h3> <br><canvas id="cp-canvas" class="shadow-sm rounded-3" width="450" height="450"></canvas></canvas></div>
+          <div
+            class="col-12 col-lg-5 d-flex flex-wrap align-items-center justify-content-center"
+          >
+            <h3>Original</h3>
+            <br />
+            <div
+              class="shadow-sm rounded-3 d-flex flex-wrap align-items-center justify-content-center"
+              style="width: 450px; height: 450px"
+            >
+              <canvas id="og-canvas"></canvas>
+            </div>
+          </div>
+          <div
+            class="col-12 col-lg-2 d-flex flex-wrap align-items-center justify-content-center"
+          >
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-center"
+            >
+              <h6>Pixel selecionado</h6>
+              <p class="text-center w-100">
+                <b>RGBA:</b> <span id="rgba-value-selected"> ( )</span>
+              </p>
+              <div id="color-square" class="shadow-sm"></div>
+            </div>
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-center"
+            >
+              <h6>Pixel focado</h6>
+              <p class="text-center w-100">
+                <b>RGBA:</b> <span id="rgba-value-mouse"> ( )</span>
+              </p>
+              <div id="color-square" class="shadow-sm"></div>
+            </div>
+            <br />
+            <div
+              class="w-100 d-flex flex-wrap align-items-center justify-content-center"
+            >
+              <button
+                class="border-0 bg-transparent w-100"
+                onclick="copyImage(ogCanvas, cpCanvas, ctxCpCanvas)"
+              >
+                <i
+                  class="bi bi-arrow-right"
+                  style="font-size: 2rem; color: cornflowerblue"
+                ></i>
+              </button>
+              <br />
+              <button
+                class="border-0 bg-transparent"
+                onclick="copyImage(cpCanvas, ogCanvas, ctxOgCanvas)"
+              >
+                <i
+                  class="bi bi-arrow-left"
+                  style="font-size: 2rem; color: cornflowerblue"
+                ></i>
+              </button>
+            </div>
+          </div>
+          <div
+            class="col-12 col-lg-5 d-flex flex-wrap align-items-center justify-content-center"
+          >
+            <h3>Auxiliar</h3>
+            <br />
+            <div
+              class="shadow-sm rounded-3 d-flex flex-wrap align-items-center justify-content-center"
+              style="width: 450px; height: 450px"
+            >
+              <canvas id="cp-canvas"></canvas>
+            </div>
+          </div>
         </div>
       </div>
     </div>
