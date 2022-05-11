@@ -1,0 +1,18 @@
+/* */
+html,
+body {
+  background: rgb(30 41 59);
+  overflow: hidden;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.bg-slate-600 {
+  background-color: rgb(71 85 105);
+}
+
+.relative{
+  position: relative;
+}
