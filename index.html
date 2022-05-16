@@ -50,6 +50,7 @@
             />
             <button
               class="border-0 bg-transparent ms-5 w-50 d-flex flex-wrap align-items-center justify-content-center"
+              onclick="downloadImage()"
             >
               <i
                 class="bi bi-save-fill me-3"
@@ -85,7 +86,22 @@
                     >Escala de Cinza</a
                   >
                 </li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="invertColors(ogCanvas, ctxOgCanvas)"
+                    >Inverter Cores</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="invertColors(ogCanvas, ctxOgCanvas)"
+                    >Sobel</a
+                  >
+                </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a class="dropdown-item" href="#">Something else here</a>
@@ -190,6 +206,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="./assets/js/grayscale.js"></script>
+    <script src="./assets/js/invert.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>

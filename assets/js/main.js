@@ -8,6 +8,15 @@ var cpCanvas = document.getElementById("cp-canvas");
 var ctxOgCanvas = ogCanvas.getContext("2d");
 var ctxCpCanvas = cpCanvas.getContext("2d");
 
+function downloadImage() {
+  let canvasUrl = ogCanvas.toDataURL();
+  const downloadElement = document.createElement("a");
+  downloadElement.href = canvasUrl;
+  downloadElement.download = "canvas-"+ new Date().toLocaleString();
+  downloadElement.click();
+  downloadElement.remove();
+}
+
 function loadImage(imgSrc) {
   imgVar = new Image();
   imgVar.crossOrigin = "anonymous";
