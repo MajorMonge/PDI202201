@@ -46,7 +46,7 @@
               type="file"
               id="inputFile"
               onchange="loadImage(this.files[0])"
-              onclick="loadImage(this.files[0])"
+              onclick="this.value=null;"
             />
             <button
               class="border-0 bg-transparent ms-5 w-50 d-flex flex-wrap align-items-center justify-content-center"
@@ -65,14 +65,35 @@
                 style="font-size: 2rem; color: cornflowerblue"
               ></i>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="#">Home</a>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Filtros e Realces
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="toGrayScale(ogCanvas, ctxOgCanvas)"
+                    >Escala de Cinza</a
+                  >
+                </li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="#">Pricing</a>
+              <a class="nav-link text-dark" href="#"></a>
             </li>
           </ul>
         </div>
@@ -168,6 +189,7 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script src="./assets/js/grayscale.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
