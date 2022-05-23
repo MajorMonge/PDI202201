@@ -56,6 +56,10 @@ function drawImage() {
       imgVar.width * mRatio,
       imgVar.height * mRatio
     );
+
+    cpCanvas.width = ogCanvas.width;
+    cpCanvas.height = ogCanvas.height;
+
   };
 }
 

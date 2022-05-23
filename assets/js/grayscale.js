@@ -1,9 +1,9 @@
-function toGrayScale(targetCanvas, targetCanvasCtx) {
-  const imageData = targetCanvasCtx.getImageData(
+function toGrayScale(fromCanvas, fromCanvasCtx, targetCanvasCtx) {
+  const imageData = fromCanvasCtx.getImageData(
     0,
     0,
-    targetCanvas.width,
-    targetCanvas.height
+    fromCanvas.width,
+    fromCanvas.height
   );
   const data = imageData.data;
 

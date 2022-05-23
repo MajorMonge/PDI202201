@@ -2,14 +2,14 @@ const gradientX = [-1.0, 0.0, +1.0, -2.0, 0.0, +2.0, -1.0, 0.0, +1.0]; //Kernel 
 
 const gradientY = [-1.0, -2.0, -1.0, 0.0, 0.0, 0.0, +1.0, +2.0, +1.0]; //Kernel Y
 
-function applySobel(targetCanvas, targetCanvasCtx) {
-  toGrayScale(targetCanvas, targetCanvasCtx);
+function applySobel(fromCanvas, fromCanvasCtx, targetCanvasCtx) {
+  toGrayScale(fromCanvas, fromCanvasCtx, targetCanvasCtx);
 
-  const imageData = targetCanvasCtx.getImageData(
+  const imageData = fromCanvasCtx.getImageData(
     0,
     0,
-    targetCanvas.width,
-    targetCanvas.height
+    fromCanvas.width,
+    fromCanvas.height
   );
 
   let pixels = [];
@@ -48,9 +48,9 @@ function applySobel(targetCanvas, targetCanvasCtx) {
     }
   }
 
-  let newImageData = targetCanvasCtx.createImageData(
-    targetCanvas.width,
-    targetCanvas.height
+  let newImageData = fromCanvasCtx.createImageData(
+    fromCanvas.width,
+    fromCanvas.height
   );
 
   newImageData.data.set(new Uint8ClampedArray(pixels));
