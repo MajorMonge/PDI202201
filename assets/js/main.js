@@ -8,15 +8,17 @@ var cpCanvas = document.getElementById("cp-canvas");
 var ctxOgCanvas = ogCanvas.getContext("2d");
 var ctxCpCanvas = cpCanvas.getContext("2d");
 
+//[FUNÇÃO PARA SALVAR A IMAGEM]
 function downloadImage() {
-  let canvasUrl = ogCanvas.toDataURL();
+  let canvasUrl = cpCanvas.toDataURL();
   const downloadElement = document.createElement("a");
   downloadElement.href = canvasUrl;
-  downloadElement.download = "canvas-"+ new Date().toLocaleString();
+  downloadElement.download = "canvas-" + new Date().toLocaleString();
   downloadElement.click();
   downloadElement.remove();
 }
 
+//[FUNÇÃO PARA CARREGAR A IMAGEM]
 function loadImage(imgSrc) {
   imgVar = new Image();
   imgVar.crossOrigin = "anonymous";
@@ -25,6 +27,7 @@ function loadImage(imgSrc) {
   drawImage();
 }
 
+//[FUNÇÃO PARA DESENHAR IMAGEM NO CANVAS]
 function drawImage() {
   ctxOgCanvas.clearRect(0, 0, ogCanvas.width, ogCanvas.height);
 
@@ -57,15 +60,60 @@ function drawImage() {
       imgVar.height * mRatio
     );
 
+    //Copia as dimensões do canvas para o auxiliar;
     cpCanvas.width = ogCanvas.width;
     cpCanvas.height = ogCanvas.height;
 
-  };
-}
+    //EVENTOS PARA OBTER PIXEL AO MOVER O MOUSE
+    ogCanvas.addEventListener("mousemove", function (event) {
+      pixelColorPick(event, ogCanvas, ctxOgCanvas, focusText, focusColor);
+    });
+    cpCanvas.addEventListener("mousemove", function (event) {
+      pixelColorPick(event, cpCanvas, ctxCpCanvas, focusText, focusColor);
+    });
 
+    //EVENTOS PARA OBTER PIXEL AO CLICAR COM O MOUSE
+    ogCanvas.addEventListener("click", function (event) {
+      pixelColorPick(event, ogCanvas, ctxOgCanvas, clickText, clickColor);
+    });
+    cpCanvas.addEventListener("click", function (event) {
+      pixelColorPick(event, cpCanvas, ctxCpCanvas, clickText, clickColor);
+    });
+  };
+} //Coloca a imagem no canvas, centralizada e com a escala máxima de 450x450 (se maior que este tamanho).
+
+//[FUNÇÃO PARA COPIAR IMAGEM]
 function copyImage(fromCanvas, toCanvas, toContext) {
   toCanvas.width = fromCanvas.width;
   toCanvas.height = fromCanvas.height;
   toContext.clearRect(0, 0, toCanvas.width, toCanvas.height);
   toContext.drawImage(fromCanvas, 0, 0);
+} //Copia a imagem entre os canvas
+
+var focusText = document.getElementById("focus-rgba-value");
+var focusColor = document.getElementById("focus-square");
+var clickText = document.getElementById("click-rgba-value");
+var clickColor = document.getElementById("click-square");
+
+//[FUNÇÃO PARA OBTER E EXIBIR INFORMAÇÕES DO PIXEL]
+function pixelColorPick(
+  event,
+  targetCanvas,
+  targetContext,
+  targetText,
+  targetColor
+) {
+  let rect = targetCanvas.getBoundingClientRect();
+
+  let x = event.clientX - rect.left,
+    y = event.clientY - rect.top,
+    pixel = targetContext.getImageData(x, y, 1, 1),
+    data = pixel.data;
+  console.log(x, y, event.pageX, event.pageY, event.layerX, event.layerY);
+  const rgba = `${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255}`;
+
+  targetText.textContent = `(${rgba})`;
+  targetColor.style.background = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${
+    data[3] / 255
+  })`;
 }
