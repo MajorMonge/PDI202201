@@ -116,7 +116,7 @@
       </div>
     </nav>
     <div
-      class="relative d-flex align-items-center p-2 shadow-sm p-3 mb-5 bg-body rounded-3 h-100"
+      class="relative d-flex p-2 shadow-sm p-3 mb-5 bg-body rounded-3 h-100"
       style="
         min-height: 80vh;
         max-height: 80vh;
@@ -125,6 +125,85 @@
       "
     >
       <div class="container">
+        <div
+        id="rgbhsl"
+          class="w-100 d-flex flex-wrap align-items-center justify-content-center mb-5"
+        >
+          <label for="rgbInput" class="form-label">RGB</label>
+          <input
+            id="rInput"
+            name="rInput"
+            type="number"
+            form-control
+            type="text"
+            class="form-control mx-2"
+            placeholder="R"
+            value="255"
+            min="0"
+            max="255"
+          />
+          <input
+            id="gInput"
+            name="gInput"
+            type="number"
+            form-control
+            type="text"
+            class="form-control mx-2"
+            placeholder="G"
+            value="255"
+            min="0"
+            max="255"
+          />
+          <input
+            id="bInput"
+            name="bInput"
+            type="number"
+            form-control
+            type="text"
+            class="form-control mx-2"
+            placeholder="B"
+            value="255"
+            min="0"
+            max="255"
+          />
+          <div id="convertion-square" class="shadow-sm color-square mx-5"></div>
+          <input
+            id="hInput"
+            name="hInput"
+            type="number"
+            form-control
+            type="text"
+            class="form-control mx-2"
+            placeholder="H"
+            value="239"
+            min="0"
+            max="239"
+          />
+          <input
+            id="sInput"
+            name="sInput"
+            type="number"
+            form-control
+            type="text"
+            class="form-control mx-2"
+            placeholder="S"
+            max="240"
+            min="0"
+            value="240"
+          />
+          <input
+            id="lInput"
+            name="lInput"
+            type="number"
+            form-control
+            type="text"
+            class="form-control mx-2"
+            placeholder="L"
+            value="240"
+            max="240"
+          />
+          <label for="hslInput" class="form-label">HSL</label>
+        </div>
         <div class="row g-0">
           <div
             class="col-12 col-lg-5 d-flex flex-wrap align-items-center justify-content-center"
@@ -205,6 +284,8 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script src="./assets/js/utils.js"></script>
+    <script src="./assets/js/rgb_hsl.js"></script>
     <script src="./assets/js/sobel.js"></script>
     <script src="./assets/js/grayscale.js"></script>
     <script src="./assets/js/invert.js"></script>
