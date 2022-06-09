@@ -66,18 +66,18 @@ function drawImage() {
 
     //EVENTOS PARA OBTER PIXEL AO MOVER O MOUSE
     ogCanvas.addEventListener("mousemove", function (event) {
-      pixelColorPick(event, ogCanvas, ctxOgCanvas, focusText, focusColor);
+      pixelColorPick(event, ogCanvas, ctxOgCanvas, focusText, focusPosText, focusColor);
     });
     cpCanvas.addEventListener("mousemove", function (event) {
-      pixelColorPick(event, cpCanvas, ctxCpCanvas, focusText, focusColor);
+      pixelColorPick(event, cpCanvas, ctxCpCanvas, focusText, focusPosText, focusColor);
     });
 
     //EVENTOS PARA OBTER PIXEL AO CLICAR COM O MOUSE
     ogCanvas.addEventListener("click", function (event) {
-      pixelColorPick(event, ogCanvas, ctxOgCanvas, clickText, clickColor);
+      pixelColorPick(event, ogCanvas, ctxOgCanvas, clickText, clickPosText, clickColor);
     });
     cpCanvas.addEventListener("click", function (event) {
-      pixelColorPick(event, cpCanvas, ctxCpCanvas, clickText, clickColor);
+      pixelColorPick(event, cpCanvas, ctxCpCanvas, clickText, clickPosText, clickColor);
     });
   };
 } //Coloca a imagem no canvas, centralizada e com a escala máxima de 450x450 (se maior que este tamanho).
@@ -90,8 +90,10 @@ function copyImage(fromCanvas, toCanvas, toContext) {
   toContext.drawImage(fromCanvas, 0, 0);
 } //Copia a imagem entre os canvas
 
+var focusPosText = document.getElementById("focus-pos-value");
 var focusText = document.getElementById("focus-rgba-value");
 var focusColor = document.getElementById("focus-square");
+var clickPosText = document.getElementById("click-pos-value");
 var clickText = document.getElementById("click-rgba-value");
 var clickColor = document.getElementById("click-square");
 
@@ -101,6 +103,7 @@ function pixelColorPick(
   targetCanvas,
   targetContext,
   targetText,
+  targetPosText,
   targetColor
 ) {
   let rect = targetCanvas.getBoundingClientRect();
@@ -109,9 +112,12 @@ function pixelColorPick(
     y = event.clientY - rect.top,
     pixel = targetContext.getImageData(x, y, 1, 1),
     data = pixel.data;
-  console.log(x, y, event.pageX, event.pageY, event.layerX, event.layerY);
-  const rgba = `${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255}`;
 
+  const rgba = `${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255}`;
+  const pos = `${x} , ${Math.round(y)}`;
+
+
+  targetPosText.textContent = `(${pos})`;
   targetText.textContent = `(${rgba})`;
   targetColor.style.background = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${
     data[3] / 255
