@@ -106,6 +106,15 @@
                   <a
                     class="dropdown-item"
                     href="#"
+                    onclick="addSaltAndPepper(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Adicionar Ruído: <br>5% de Sal e Pimenta</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
                     onclick="applySobel(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
                     >Sobel</a
                   >
@@ -337,8 +346,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="./assets/js/utils.js"></script>
-    <script src="./assets/js/rgb_channels.js"></script>
     <script src="./assets/js/rgb_hsl.js"></script>
+    <script src="./assets/js/rgb_channels.js"></script>
+    <script src="./assets/js/salt_and_pepper.js"></script>
     <script src="./assets/js/sobel.js"></script>
     <script src="./assets/js/grayscale.js"></script>
     <script src="./assets/js/invert.js"></script>
