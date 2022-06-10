@@ -4,9 +4,15 @@ var imgFileButton = document.getElementById("inputFile");
 
 var ogCanvas = document.getElementById("og-canvas");
 var cpCanvas = document.getElementById("cp-canvas");
+var rCanvas = document.getElementById("r-canvas");
+var gCanvas = document.getElementById("g-canvas");
+var bCanvas = document.getElementById("b-canvas");
 
 var ctxOgCanvas = ogCanvas.getContext("2d");
 var ctxCpCanvas = cpCanvas.getContext("2d");
+var ctxRCanvas = rCanvas.getContext("2d");
+var ctxGCanvas = gCanvas.getContext("2d");
+var ctxBCanvas = bCanvas.getContext("2d");
 
 //[FUNÇÃO PARA SALVAR A IMAGEM]
 function downloadImage() {
@@ -60,9 +66,15 @@ function drawImage() {
       imgVar.height * mRatio
     );
 
-    //Copia as dimensões do canvas para o auxiliar;
+    //Copia as dimensões do canvas para o auxiliar e os de canais de cores;
     cpCanvas.width = ogCanvas.width;
+    rCanvas.width = ogCanvas.width;
+    gCanvas.width = ogCanvas.width;
+    bCanvas.width = ogCanvas.width;
     cpCanvas.height = ogCanvas.height;
+    rCanvas.height = ogCanvas.height;
+    gCanvas.height = ogCanvas.height;
+    bCanvas.height = ogCanvas.height;
 
     //EVENTOS PARA OBTER PIXEL AO MOVER O MOUSE
     ogCanvas.addEventListener("mousemove", function (event) {
@@ -118,7 +130,6 @@ function drawImage() {
       drawLine(downE, upEvent, ogCanvas, ctxOgCanvas);
     });
 
-    
     cpCanvas.addEventListener("mousedown", function (downEvent) {
       downE = downEvent;
     });
