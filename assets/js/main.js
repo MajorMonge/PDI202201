@@ -108,6 +108,7 @@ function drawImage() {
         clickPosText,
         clickColor
       );
+      drawPixel(event, ogCanvas, ctxOgCanvas);
     });
     cpCanvas.addEventListener("click", function (event) {
       pixelColorPick(
@@ -118,6 +119,7 @@ function drawImage() {
         clickPosText,
         clickColor
       );
+      drawPixel(event, cpCanvas, ctxCpCanvas);
     });
 
     //EVENTOS PARA DESENHAR LINHA
@@ -148,18 +150,29 @@ function copyImage(fromCanvas, toCanvas, toContext) {
   toContext.drawImage(fromCanvas, 0, 0);
 } //Copia a imagem entre os canvas
 
+//[FUNÇÃO PARA DESENHAR PIXEL]
+function drawPixel(event, targetCanvas, targetContext) {
+  let rect = targetCanvas.getBoundingClientRect();
+
+  let x = event.clientX - rect.left,
+  y = Math.round(event.clientY - rect.top);
+
+  targetContext.fillStyle = `rgb(${rInput.value}, ${gInput.value}, ${bInput.value})`;
+  targetContext.fillRect(x, y, 1, 1);
+}
+
 //[FUNÇÃO PARA DESENHAR LINHA]
 function drawLine(eventDown, eventUp, targetCanvas, targetContext) {
   let rect = targetCanvas.getBoundingClientRect();
   let downX = eventDown.clientX - rect.left,
-    downY = eventDown.clientY - rect.top,
+    downY = Math.round(eventDown.clientY - rect.top),
     upX = eventUp.clientX - rect.left,
-    upY = eventUp.clientY - rect.top;
+    upY = Math.round(eventUp.clientY - rect.top);
 
   targetContext.beginPath();
   targetContext.moveTo(downX, downY);
   targetContext.lineTo(upX, upY);
-  targetContext.strokeStyle = `rgba(${rInput.value}, ${gInput.value}, ${bInput.value})`;
+  targetContext.strokeStyle = `rgb(${rInput.value}, ${gInput.value}, ${bInput.value})`;
   targetContext.stroke();
   targetContext.closePath();
 }
@@ -182,8 +195,8 @@ function pixelColorPick(
 ) {
   let rect = targetCanvas.getBoundingClientRect();
 
-  let x = event.clientX - rect.left,
-    y = event.clientY - rect.top,
+  let x = Math.round(event.clientX - rect.left),
+    y = Math.round(event.clientY - rect.top),
     pixel = targetContext.getImageData(x, y, 1, 1),
     data = pixel.data;
 
