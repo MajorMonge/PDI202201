@@ -66,18 +66,65 @@ function drawImage() {
 
     //EVENTOS PARA OBTER PIXEL AO MOVER O MOUSE
     ogCanvas.addEventListener("mousemove", function (event) {
-      pixelColorPick(event, ogCanvas, ctxOgCanvas, focusText, focusPosText, focusColor);
+      pixelColorPick(
+        event,
+        ogCanvas,
+        ctxOgCanvas,
+        focusText,
+        focusPosText,
+        focusColor
+      );
     });
     cpCanvas.addEventListener("mousemove", function (event) {
-      pixelColorPick(event, cpCanvas, ctxCpCanvas, focusText, focusPosText, focusColor);
+      pixelColorPick(
+        event,
+        cpCanvas,
+        ctxCpCanvas,
+        focusText,
+        focusPosText,
+        focusColor
+      );
     });
 
     //EVENTOS PARA OBTER PIXEL AO CLICAR COM O MOUSE
     ogCanvas.addEventListener("click", function (event) {
-      pixelColorPick(event, ogCanvas, ctxOgCanvas, clickText, clickPosText, clickColor);
+      pixelColorPick(
+        event,
+        ogCanvas,
+        ctxOgCanvas,
+        clickText,
+        clickPosText,
+        clickColor
+      );
     });
     cpCanvas.addEventListener("click", function (event) {
-      pixelColorPick(event, cpCanvas, ctxCpCanvas, clickText, clickPosText, clickColor);
+      pixelColorPick(
+        event,
+        cpCanvas,
+        ctxCpCanvas,
+        clickText,
+        clickPosText,
+        clickColor
+      );
+    });
+
+    //EVENTOS PARA DESENHAR LINHA
+    let downE;
+    ogCanvas.addEventListener("mousedown", function (downEvent) {
+      downE = downEvent;
+    });
+
+    ogCanvas.addEventListener("mouseup", function (upEvent) {
+      drawLine(downE, upEvent, ogCanvas, ctxOgCanvas);
+    });
+
+    
+    cpCanvas.addEventListener("mousedown", function (downEvent) {
+      downE = downEvent;
+    });
+
+    cpCanvas.addEventListener("mouseup", function (upEvent) {
+      drawLine(downE, upEvent, cpCanvas, ctxCpCanvas);
     });
   };
 } //Coloca a imagem no canvas, centralizada e com a escala máxima de 450x450 (se maior que este tamanho).
@@ -89,6 +136,22 @@ function copyImage(fromCanvas, toCanvas, toContext) {
   toContext.clearRect(0, 0, toCanvas.width, toCanvas.height);
   toContext.drawImage(fromCanvas, 0, 0);
 } //Copia a imagem entre os canvas
+
+//[FUNÇÃO PARA DESENHAR LINHA]
+function drawLine(eventDown, eventUp, targetCanvas, targetContext) {
+  let rect = targetCanvas.getBoundingClientRect();
+  let downX = eventDown.clientX - rect.left,
+    downY = eventDown.clientY - rect.top,
+    upX = eventUp.clientX - rect.left,
+    upY = eventUp.clientY - rect.top;
+
+  targetContext.beginPath();
+  targetContext.moveTo(downX, downY);
+  targetContext.lineTo(upX, upY);
+  targetContext.strokeStyle = `rgba(${rInput.value}, ${gInput.value}, ${bInput.value})`;
+  targetContext.stroke();
+  targetContext.closePath();
+}
 
 var focusPosText = document.getElementById("focus-pos-value");
 var focusText = document.getElementById("focus-rgba-value");
@@ -115,7 +178,6 @@ function pixelColorPick(
 
   const rgba = `${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255}`;
   const pos = `${x} , ${Math.round(y)}`;
-
 
   targetPosText.textContent = `(${pos})`;
   targetText.textContent = `(${rgba})`;
