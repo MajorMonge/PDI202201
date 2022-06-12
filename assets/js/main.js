@@ -100,6 +100,14 @@ function drawImage() {
 
     //EVENTOS PARA OBTER PIXEL AO CLICAR COM O MOUSE
     ogCanvas.addEventListener("click", function (event) {
+      drawPixel(event, ogCanvas, ctxOgCanvas);
+    });
+    cpCanvas.addEventListener("click", function (event) {
+      drawPixel(event, cpCanvas, ctxCpCanvas);
+    });
+
+    //EVENTOS PARA DESENHAR PIXEL
+    ogCanvas.addEventListener("contextmenu", function (event) {
       pixelColorPick(
         event,
         ogCanvas,
@@ -108,9 +116,8 @@ function drawImage() {
         clickPosText,
         clickColor
       );
-      drawPixel(event, ogCanvas, ctxOgCanvas);
     });
-    cpCanvas.addEventListener("click", function (event) {
+    cpCanvas.addEventListener("contextmenu", function (event) {
       pixelColorPick(
         event,
         cpCanvas,
@@ -119,7 +126,6 @@ function drawImage() {
         clickPosText,
         clickColor
       );
-      drawPixel(event, cpCanvas, ctxCpCanvas);
     });
 
     //EVENTOS PARA DESENHAR LINHA
@@ -155,7 +161,7 @@ function drawPixel(event, targetCanvas, targetContext) {
   let rect = targetCanvas.getBoundingClientRect();
 
   let x = event.clientX - rect.left,
-  y = Math.round(event.clientY - rect.top);
+    y = Math.round(event.clientY - rect.top);
 
   targetContext.fillStyle = `rgb(${rInput.value}, ${gInput.value}, ${bInput.value})`;
   targetContext.fillRect(x, y, 1, 1);
@@ -208,4 +214,6 @@ function pixelColorPick(
   targetColor.style.background = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${
     data[3] / 255
   })`;
+
+  event.preventDefault();
 }

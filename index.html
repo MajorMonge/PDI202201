@@ -116,7 +116,8 @@
                     class="dropdown-item"
                     href="#"
                     onclick="applyHistogram(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
-                    >Equalizar Imagem (Histograma)</a
+                    >Equalizar Imagem <br />
+                    (Histograma)</a
                   >
                 </li>
                 <li>
@@ -133,6 +134,22 @@
                     href="#"
                     onclick="applyMedian(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
                     >Filtro da Mediana</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyBinarization(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Binarização</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyLaplaceByFour(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Filtro Laplaciano <br/> de Vizinhança 4</a
                   >
                 </li>
                 <li>
@@ -378,6 +395,8 @@
     <script src="./assets/js/average.js"></script>
     <script src="./assets/js/median.js"></script>
     <script src="./assets/js/histogram.js"></script>
+    <script src="./assets/js/binarization.js"></script>
+    <script src="./assets/js/laplace.js"></script>
     <script src="./assets/js/sobel.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
