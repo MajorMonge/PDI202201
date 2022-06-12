@@ -149,7 +149,8 @@
                     class="dropdown-item"
                     href="#"
                     onclick="applyLaplaceByFour(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
-                    >Filtro Laplaciano <br/> de Vizinhança 4</a
+                    >Filtro Laplaciano <br />
+                    de Vizinhança 4</a
                   >
                 </li>
                 <li>
@@ -158,6 +159,22 @@
                     href="#"
                     onclick="applySobel(ogCanvas, ctxOgCanvas, cpCanvas, ctxCpCanvas)"
                     >Sobel</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyCompression(ogCanvas, ctxOgCanvas, ctxCpCanvas, ctxRCanvas, ctxGCanvas, ctxBCanvas)"
+                    >Compressão de<br> Escala Dinâmica</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyThreshold(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Limiarização</a
                   >
                 </li>
                 <li><hr class="dropdown-divider" /></li>
@@ -348,6 +365,9 @@
             class="col-12 col-lg-4 d-flex flex-wrap align-items-center justify-content-center"
           >
             <h3>R</h3>
+            <div class="w-100 my-2 text-center">
+              <small>S = cr^γ c = 1.0 γ = 0.3</small>
+            </div>
             <br />
             <div
               class="shadow-sm rounded-3 d-flex flex-wrap align-items-center justify-content-center"
@@ -360,6 +380,9 @@
             class="col-12 col-lg-4 d-flex flex-wrap align-items-center justify-content-center"
           >
             <h3>G</h3>
+            <div class="w-100 my-2 text-center">
+              <small>S = cr^γ c = 1.0 γ = 0.4</small>
+            </div>
             <br />
             <div
               class="shadow-sm rounded-3 d-flex flex-wrap align-items-center justify-content-center"
@@ -372,6 +395,9 @@
             class="col-12 col-lg-4 d-flex flex-wrap align-items-center justify-content-center"
           >
             <h3>B</h3>
+            <div class="w-100 my-2 text-center">
+              <small>S = cr^γ c = 1.0 γ = 0.6</small>
+            </div>
             <br />
             <div
               class="shadow-sm rounded-3 d-flex flex-wrap align-items-center justify-content-center"
@@ -401,6 +427,8 @@
     <script src="./assets/js/binarization.js"></script>
     <script src="./assets/js/laplace.js"></script>
     <script src="./assets/js/sobel.js"></script>
+    <script src="./assets/js/compression.js"></script>
+    <script src="./assets/js/thresholding.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
