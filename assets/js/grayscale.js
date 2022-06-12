@@ -8,7 +8,7 @@ function toGrayScale(fromCanvas, fromCanvasCtx, targetCanvasCtx) {
   const data = imageData.data;
 
   for (var i = 0; i < data.length; i += 4) {
-    var average = (data[i] + data[i + 1] + data[i + 2]) / 3; //
+    var average = (data[i] + data[i + 1] + data[i + 2]) / 3;
 
     data[i] = average; // R
     data[i + 1] = average; // G

@@ -107,10 +107,34 @@
                     class="dropdown-item"
                     href="#"
                     onclick="addSaltAndPepper(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
-                    >Adicionar Ruído: <br>5% de Sal e Pimenta</a
+                    >Adicionar Ruído: <br />5% de Sal e Pimenta</a
                   >
                 </li>
                 <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyHistogram(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Equalizar Imagem (Histograma)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyAverage(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Filtro da Média</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyMedian(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Filtro da Mediana</a
+                  >
+                </li>
                 <li>
                   <a
                     class="dropdown-item"
@@ -349,9 +373,12 @@
     <script src="./assets/js/rgb_hsl.js"></script>
     <script src="./assets/js/rgb_channels.js"></script>
     <script src="./assets/js/salt_and_pepper.js"></script>
-    <script src="./assets/js/sobel.js"></script>
     <script src="./assets/js/grayscale.js"></script>
     <script src="./assets/js/invert.js"></script>
+    <script src="./assets/js/average.js"></script>
+    <script src="./assets/js/median.js"></script>
+    <script src="./assets/js/histogram.js"></script>
+    <script src="./assets/js/sobel.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
