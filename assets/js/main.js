@@ -75,6 +75,7 @@ function drawImage() {
     rCanvas.height = ogCanvas.height;
     gCanvas.height = ogCanvas.height;
     bCanvas.height = ogCanvas.height;
+    
 
     //EVENTOS PARA OBTER PIXEL AO MOVER O MOUSE
     ogCanvas.addEventListener("mousemove", function (event) {
