@@ -72,13 +72,12 @@
               >Salvar imagem
             </button>
           </div>
+
+          <i
+            class="bi bi-tools my-auto me-2 fw-bold"
+            style="font-size: 2rem; color: cornflowerblue"
+          ></i>
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item d-flex">
-              <i
-                class="bi bi-tools my-auto me-2 fw-bold"
-                style="font-size: 2rem; color: cornflowerblue"
-              ></i>
-            </li>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -191,10 +190,76 @@
                     >Limiarização</a
                   >
                 </li>
-                <li><hr class="dropdown-divider" /></li>
-                <!--  <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li> -->
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#"></a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Operações
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyDCT(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Transformada Discreta <br />
+                    do Cosseno</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyMin(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Filtro Valor Mínimo</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyMax(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Filtro Valor Máximo</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyAveragePoint(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Filtro Ponto Médio</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyPseudoColor(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Filtro de <br />
+                    Pseudocores</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="applyColorEqualization(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
+                    >Equalizar Imagem <br />
+                    Colorida</a
+                  >
+                </li>
               </ul>
             </li>
             <li class="nav-item">
@@ -429,7 +494,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Informações da aplicação</h5>
+            <h5 class="modal-title" id="exampleModalLabel">
+              Informações da aplicação
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -437,7 +504,7 @@
               aria-label="Close"
             ></button>
           </div>
-          
+
           <div class="modal-body">
             <ul>
               <li>Carregue a imagem para aplicar as operações e filtros</li>
@@ -520,6 +587,13 @@
     <script src="./assets/js/sobel.js"></script>
     <script src="./assets/js/compression.js"></script>
     <script src="./assets/js/thresholding.js"></script>
+    <script src="./assets/js/discrete_cosine_transform.js"></script>
+    <script src="./assets/js/minimum.js"></script>
+    <script src="./assets/js/maximum.js"></script>
+    <script src="./assets/js/average_point.js"></script>
+    <script src="./assets/js/pseudocolors.js"></script>
+    <script src="./assets/js/average_point.js"></script>
+    <script src="./assets/js/color_equalization.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
