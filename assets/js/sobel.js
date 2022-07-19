@@ -51,6 +51,7 @@ function applySobel(fromCanvas, fromCanvasCtx, targetCanvas, targetCanvasCtx) {
       let magnitude = Math.sqrt(pX * pX + pY * pY);
 
       let direction = Math.tan(isNaN(pY) ? 0 : pY, isNaN(pX) ? 0 : pX) ** -1;
+
       directionArray[x * y] = isFinite(direction) ? direction : false;
 
       magnitudeArray.push(isNaN(magnitude) ? 0 : magnitude);

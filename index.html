@@ -24,7 +24,7 @@
     >
       <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="#"
-          >Trabalho PDI - Parte I <br /><small
+          >Trabalho PDI - Partes I e II<br /><small
             >Luiz Filipe Miguel Monge - 171253132</small
           ></a
         >
@@ -222,6 +222,15 @@
                   <a
                     class="dropdown-item"
                     href="#"
+                    onclick="applyIDCT(ogCanvas, ctxOgCanvas, ctxCpCanvas, ctxGCanvas)"
+                    >Transformada Discreta <br />
+                    do Cosseno Inversa</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
                     onclick="applyMin(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
                     >Filtro Valor Mínimo</a
                   >
@@ -258,6 +267,18 @@
                     onclick="applyColorEqualization(ogCanvas, ctxOgCanvas, ctxCpCanvas)"
                     >Equalizar Imagem <br />
                     Colorida</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="(() => {
+                      applyGaussianLaplace(ogCanvas, ctxOgCanvas, ctxCpCanvas)
+                      applyLaplaceByFour(ogCanvas, ctxOgCanvas, ctxGCanvas)
+                    })()"
+                    >Laplaciana da<br />
+                    Gaussiana</a
                   >
                 </li>
               </ul>
@@ -594,6 +615,7 @@
     <script src="./assets/js/pseudocolors.js"></script>
     <script src="./assets/js/average_point.js"></script>
     <script src="./assets/js/color_equalization.js"></script>
+    <script src="./assets/js/gaussian_laplace.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
