@@ -281,6 +281,46 @@
                     Gaussiana</a
                   >
                 </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="(() => {
+                      applyOtsu(ogCanvas, ctxOgCanvas, ctxCpCanvas)
+                    })()"
+                    >Otsu</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="(() => {
+                      applyZhangSuen(ogCanvas, ctxOgCanvas, ctxCpCanvas)
+                    })()"
+                    >Zhang e Suen</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="(() => {
+                      applyDilation(ogCanvas, ctxOgCanvas, ctxCpCanvas)
+                    })()"
+                    >Dilatação</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="(() => {
+                      applyErosion(ogCanvas, ctxOgCanvas, ctxCpCanvas)
+                    })()"
+                    >Erosão</a
+                  >
+                </li>
               </ul>
             </li>
             <li class="nav-item">
@@ -616,6 +656,10 @@
     <script src="./assets/js/average_point.js"></script>
     <script src="./assets/js/color_equalization.js"></script>
     <script src="./assets/js/gaussian_laplace.js"></script>
+    <script src="./assets/js/otsu.js"></script>
+    <script src="./assets/js/zhang_suen.js"></script>
+    <script src="./assets/js/dilation.js"></script>
+    <script src="./assets/js/erosion.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
