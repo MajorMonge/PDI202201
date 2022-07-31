@@ -17,20 +17,30 @@ function applyDilation(fromCanvas, fromCanvasCtx, targetCanvasCtx) {
   let pixels = [],
     bPixels = [];
 
-  for (let i = 0; i < imageData.length; i += 4) {
-    bPixels.push(0);
+  for (let y = 0; y < fromCanvas.height; y++) {
+    bPixels.push([]);
+    for (let x = 0; x < fromCanvas.width; x++) {
+      bPixels[y].push(0);
+    }
   }
 
-  for (let i = 0; i < imageData.length; i += 4) {
-    pixels.push(imageData[i] > 0 ? 1 : 0);
+  for (let y = 0; y < fromCanvas.height; y++) {
+    pixels.push([]);
+    for (let x = 0; x < fromCanvas.width; x++) {
+      pixels[y].push(imageData[(y * fromCanvas.width + x) * 4] > 0 ? 1 : 0);
+    }
   }
 
-  for (let i = 0; i < pixels.length; i++) {
-    if (pixels[i] == 1) {
-      for (let j = -1; j <= 1; j++) {
-        for (let k = -1; k <= 1; k++) {
-          if (dilationMask[j + 1][k + 1] === 1) {
-            bPixels[i + k + j] = 1;
+  for (let y = 0; y < pixels.length; y++) {
+    for (let x = 0; x < pixels[y].length; x++) {
+      if (pixels[y][x] == 1) {
+        for (let j = -1; j <= 1; j++) {
+          for (let k = -1; k <= 1; k++) {
+            if (dilationMask[j + 1][k + 1] === 1) {
+              if (bPixels[j + y] !== undefined)
+                if (bPixels[j + y][k + x] !== undefined)
+                  bPixels[j + y][x + k] = 1;
+            }
           }
         }
       }
@@ -38,15 +48,15 @@ function applyDilation(fromCanvas, fromCanvasCtx, targetCanvasCtx) {
   }
 
   let newPixelData = [];
-
   for (let i = 0; i < bPixels.length; i++) {
-    if (bPixels[i] === 1) {
-      newPixelData.push(255, 255, 255, 255);
-    } else {
-      newPixelData.push(0, 0, 0, 255);
+    for (let j = 0; j < bPixels[i].length; j++) {
+      if (bPixels[i][j] === 1) {
+        newPixelData.push(255, 255, 255, 255);
+      } else {
+        newPixelData.push(0, 0, 0, 255);
+      }
     }
   }
-
   console.log(newPixelData);
 
   let newImageData = fromCanvasCtx.createImageData(

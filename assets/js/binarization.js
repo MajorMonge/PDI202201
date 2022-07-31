@@ -1,5 +1,6 @@
 function applyBinarization(fromCanvas, fromCanvasCtx, targetCanvasCtx) {
   toGrayScale(fromCanvas, fromCanvasCtx, targetCanvasCtx);
+  let t = parseInt(prompt("Digite o valor do limiar:", "128"));
 
   let imageData = targetCanvasCtx.getImageData(
     0,
@@ -9,7 +10,7 @@ function applyBinarization(fromCanvas, fromCanvasCtx, targetCanvasCtx) {
   ).data;
 
   for (let i = 0; i < imageData.length; i += 4) {
-    if (imageData[i] < 128) {
+    if (imageData[i] < t) {
       imageData[i] = 0;
       imageData[i + 1] = 0;
       imageData[i + 2] = 0;

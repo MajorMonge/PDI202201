@@ -17,27 +17,37 @@ function applyErosion(fromCanvas, fromCanvasCtx, targetCanvasCtx) {
   let pixels = [],
     bPixels = [];
 
-  for (let i = 0; i < imageData.length; i += 4) {
-    bPixels.push(0);
+  for (let y = 0; y < fromCanvas.height; y++) {
+    bPixels.push([]);
+    for (let x = 0; x < fromCanvas.width; x++) {
+      bPixels[y].push(0);
+    }
   }
 
-  for (let i = 0; i < imageData.length; i += 4) {
-    pixels.push(imageData[i] > 0 ? 1 : 0);
+  for (let y = 0; y < fromCanvas.height; y++) {
+    pixels.push([]);
+    for (let x = 0; x < fromCanvas.width; x++) {
+      pixels[y].push(imageData[(y * fromCanvas.width + x) * 4] > 0 ? 1 : 0);
+    }
   }
 
-  for (let i = 0; i < pixels.length; i++) {
-    if (pixels[i] == 1) {
-      let remove = false;
-      for (let j = -1; j <= 1; j++) {
-        for (let k = -1; k <= 1; k++) {
-          if (erosionMask[j + 1][k + 1] === 1 && pixels[i + j + k] === 0) {
-            remove = true;
-          }
+  for (let y = 0; y < pixels.length; y++) {
+    for (let x = 0; x < pixels[y].length; x++) {
+      if (pixels[y][x] == 1) {
+        let remove = false;
+        for (let j = -1; j <= 1; j++) {
+          for (let k = -1; k <= 1; k++) {
+            if (erosionMask[j + 1][k + 1] === 1) {
+              if (pixels[j + y] === undefined) remove = true;
+              else if (pixels[j + y][k + x] === undefined) remove = true;
+              else if (pixels[j + y][k + x] === 0) remove = true;
+            }
 
-          if (remove) {
-            bPixels[i] = 0;
-          } else {
-            bPixels[i] = 1;
+            if (remove) {
+              bPixels[y][x] = 0;
+            } else {
+              bPixels[y][x] = 1;
+            }
           }
         }
       }
@@ -47,13 +57,14 @@ function applyErosion(fromCanvas, fromCanvasCtx, targetCanvasCtx) {
   let newPixelData = [];
 
   for (let i = 0; i < bPixels.length; i++) {
-    if (bPixels[i] === 1) {
-      newPixelData.push(255, 255, 255, 255);
-    } else {
-      newPixelData.push(0, 0, 0, 255);
+    for (let j = 0; j < bPixels[i].length; j++) {
+      if (bPixels[i][j] === 1) {
+        newPixelData.push(255, 255, 255, 255);
+      } else {
+        newPixelData.push(0, 0, 0, 255);
+      }
     }
   }
-
   console.log(newPixelData);
 
   let newImageData = fromCanvasCtx.createImageData(
